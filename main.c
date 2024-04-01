@@ -42,9 +42,12 @@ void	init_data(t_data *data)
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
+  data->x_offset = 0;
+  data->y_offset = 0;
+  data->zoom = 2.0;
 }
 
-void	put_image(t_data data, int x_offset, int y_offset, double zoom)
+void	put_image(t_data data)
 {
 	int		x;
 	int		y;
@@ -54,7 +57,7 @@ void	put_image(t_data data, int x_offset, int y_offset, double zoom)
 
 	center = init_complex(-0.75, 0);
 
-	scale = zoom / WIN_WIDTH;
+	scale = data.zoom / WIN_WIDTH;
 	x = 0;
 	y = 0;
 	while (y < WIN_HEIGHT)
@@ -62,13 +65,14 @@ void	put_image(t_data data, int x_offset, int y_offset, double zoom)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			c = init_complex((x + x_offset - WIN_WIDTH / 2.0) * scale + center.re, (y + y_offset - WIN_HEIGHT / 2.0) * scale + center.im);
+			c = init_complex((x + data.x_offset - WIN_WIDTH / 2.0) * scale + center.re, (y + data.y_offset - WIN_HEIGHT / 2.0) * scale + center.im);
       int color = get_color(mandelbrot(c));
 			*(int *)(data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8))) = color;
 			x++;
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 }
 
 int	main(void)
@@ -84,8 +88,7 @@ int	main(void)
 		return (1);
 	}
   
-  put_image(data, 200, 500, 2.0);
-	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+  put_image(data);
 	mlx_key_hook(data.win, key_press, &data);
 	mlx_loop(data.mlx);
 	return (0);

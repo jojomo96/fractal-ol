@@ -17,20 +17,27 @@
 # define LEFT_KEY_LINUX 65361
 # define RIGHT_KEY_MAC 124
 # define RIGHT_KEY_LINUX 65363
+# define PLUS_KEY 43
+# define MINUS_KEY 45
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
+
+# define OFFSET_PER_CLICK 50
 
 # define MAX_ITER 100
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-  void  *img;
-  char  *addr;
-  int   bits_per_pixel;
-  int   line_length;
-  int   endian;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		x_offset;
+	int		y_offset;
+  double   zoom;
 }			t_data;
 
 int			key_press(int keycode, t_data *data);
@@ -38,4 +45,5 @@ int			key_press(int keycode, t_data *data);
 int			mandelbrot(t_complex c);
 t_complex	init_complex(double re, double im);
 t_data		*get_data(void);
+void		put_image(t_data data);
 #endif
