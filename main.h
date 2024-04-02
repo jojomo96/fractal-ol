@@ -24,6 +24,7 @@
 # define WIN_HEIGHT 600
 
 # define OFFSET_PER_CLICK 50
+# define ZOOM_PER_CLICK 0.5
 
 # define MAX_ITER 100
 typedef struct s_data
@@ -37,13 +38,13 @@ typedef struct s_data
 	int		endian;
 	int		x_offset;
 	int		y_offset;
-  double   zoom;
+	double	zoom;
 }			t_data;
 
 int			key_press(int keycode, t_data *data);
 
-int			mandelbrot(t_complex c);
+int			  mandelbrot(t_complex c, double zoom_level);
 t_complex	init_complex(double re, double im);
 t_data		*get_data(void);
-void		put_image(t_data data);
+void		  put_image(t_data data);
 #endif

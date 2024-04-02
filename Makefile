@@ -2,7 +2,7 @@ NAME = minilibx_test
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBS = -lmlx -L/usr/local/lib -I/usr/local/include -lXext -lX11 -lm -lbsd
-SRC = main.c events.c complex.c mandelbrot.c utils.c
+SRC = main.c events.c complex.c fractals/mandelbrot.c utils.c window.
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
