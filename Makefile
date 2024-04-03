@@ -4,14 +4,15 @@ CFLAGS = -Wall -Wextra -Werror
 LIBS = -lmlx -L/usr/local/lib -I/usr/local/include -lXext -lX11 -lm -lbsd
 SRC = main.c events.c complex.c fractals/mandelbrot.c utils.c window.c
 OBJDIR = obj
-OBJ = $(OBJDIR)/$(SRC:.c=.o)
+OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJDIR) $(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(LIBS)
 
 clean:
@@ -22,4 +23,5 @@ fclean: clean
 
 re: fclean all
 
-phony: all clean fclean re
+.PHONY: all clean fclean re
+
