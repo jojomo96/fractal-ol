@@ -1,18 +1,5 @@
 #include "main.h"
 
-void	draw_pixel(void *mlx_ptr, void *win_ptr, int x, int y, int color)
-{
-	mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-}
-
-hallo
-int	color_scheme(int iter, int max_iter)
-{
-	int	color;
-
-	color = 255 - (255 * iter / max_iter);
-	return ((color << 16) | (color << 8) | color); // Grayscale
-}
 
 int	get_color(int iter)
 {
@@ -36,17 +23,7 @@ int	get_color(int iter)
 	}
 }
 
-void	init_data(t_data *data)
-{
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Fract'ol");
-	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
-			&data->line_length, &data->endian);
-	data->x_offset = 0;
-	data->y_offset = 0;
-	data->zoom = 2.0;
-}
+
 
 void	put_image(t_data data)
 {
@@ -83,7 +60,7 @@ int	main(void)
 {
 	t_data	data;
 
-	init_data(&data);
+	init_window_data(&data);
 	if (data.mlx == NULL)
 		return (1);
 	if (data.win == NULL)

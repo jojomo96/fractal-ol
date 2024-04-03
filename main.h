@@ -36,15 +36,18 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		x_offset;
-	int		y_offset;
+	double	x_offset;
+	double	y_offset;
 	double	zoom;
+	double	scale;
 }			t_data;
 
 int			key_press(int keycode, t_data *data);
 
-int			  mandelbrot(t_complex c, double zoom_level);
+int			mandelbrot(t_complex c, double zoom_level);
 t_complex	init_complex(double re, double im);
 t_data		*get_data(void);
-void		  put_image(t_data data);
+void		put_image(t_data data);
+void		init_window_data(t_data *data);
+
 #endif
