@@ -9,7 +9,7 @@ REPO_URL = https://github.com/codam-coding-college/MLX42.git
 # Detect operating system
 UNAME_S := $(shell uname -s)
 
-CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42
+CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42 -Ofast
 
 ifeq ($(UNAME_S),Linux)
     LIBS = -L$(REPO_DIR)/lib -lmlx42 -lm -ldl -lX11 -lXext -lbsd

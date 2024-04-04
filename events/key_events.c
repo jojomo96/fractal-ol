@@ -13,9 +13,11 @@ void	move_window(t_data *data, int x_offset, int y_offset)
 	put_image(*data);
 }
 
-void	key_press(t_data *data)
+void	key_press(void *param)
 {
-	printf("data: %p\n", data);
+	t_data	*data;
+
+	data = (t_data *)param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		handle_ESC_key(data);
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_UP))

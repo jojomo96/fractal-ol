@@ -37,7 +37,13 @@ typedef struct s_data
 	double		scale;
 }				t_data;
 
-void			key_press( t_data *data);
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}				t_point;
+
+void			key_press(void *param);
 
 int				mandelbrot(t_complex c, double zoom_level);
 t_complex		init_complex(double re, double im);
