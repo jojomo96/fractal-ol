@@ -1,19 +1,15 @@
 NAME = minilibx_test
 CC = cc
-SRC = main.c events.c complex.c fractals/mandelbrot.c utils.c window.c
+SRC = main.c events/key_events.c complex.c fractals/mandelbrot.c utils.c window.c
 OBJDIR = obj
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
-DEP = $(OBJ:%.o=%.d)
 REPO_DIR = MLX42
 REPO_URL = https://github.com/codam-coding-college/MLX42.git
-
-# Automatically generated dependencies
--include $(DEP)
 
 # Detect operating system
 UNAME_S := $(shell uname -s)
 
-CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42 -MMD -MP
+CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42
 
 ifeq ($(UNAME_S),Linux)
     LIBS = -L$(REPO_DIR)/lib -lmlx42 -lm -ldl -lX11 -lXext -lbsd

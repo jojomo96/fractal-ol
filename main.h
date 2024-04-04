@@ -37,7 +37,7 @@ typedef struct s_data
 	double		scale;
 }				t_data;
 
-void			key_press(mlx_key_data_t keycode, void *data);
+void			key_press( t_data *data);
 
 int				mandelbrot(t_complex c, double zoom_level);
 t_complex		init_complex(double re, double im);

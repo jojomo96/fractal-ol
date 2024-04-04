@@ -70,7 +70,7 @@ int	main(void)
 		ft_error();
 	}
 	put_image(data);
-	mlx_key_hook(data.mlx, &key_press, &data);
+	mlx_loop_hook(data.mlx, &key_press, &data);
 	mlx_loop(data.mlx);
 	// mlx_terminate(data.mlx);
 	return (0);
