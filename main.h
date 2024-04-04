@@ -20,10 +20,10 @@
 # define PLUS_KEY 334
 # define MINUS_KEY 333
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 1000
 
-# define OFFSET_PER_CLICK 50
+# define OFFSET_PER_CLICK 10
 # define ZOOM_PER_CLICK 1.1
 
 # define MAX_ITER 5000
@@ -56,5 +56,6 @@ t_data			*get_data(void);
 void			put_image(t_data data);
 void			init_window_data(t_data *data);
 double			calculate_max_iter(double zoom_level);
+void			put_image(t_data data);
 
 #endif
