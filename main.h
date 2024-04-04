@@ -55,6 +55,8 @@ void				mouse_move_event(double x, double y, void *param);
 
 int					mandelbrot(t_complex c, double zoom_level);
 int					julia(t_complex z, double zoom);
+int					burning_ship(t_complex c, double zoom);
+
 t_complex			init_complex(double re, double im);
 t_data				*get_data(void);
 void				init_window_data(t_data *data);
