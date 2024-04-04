@@ -2,7 +2,7 @@
 
 void	handle_ESC_key(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
+	mlx_terminate(data->mlx);
 	exit(0);
 }
 
@@ -45,23 +45,23 @@ void	adjust_zoom(t_data *data, double zoom_factor, double mouse_x,
 	put_image(*data);
 }
 
-int	key_press(int keycode, t_data *data)
+void	key_press(mlx_key_data_t keycode, void *data)
 {
-	// printf("keycode: %d\n", keycode);
-	if (keycode == ESC_KEY_MAC || keycode == ESC_KEY_LINUX)
+
+	printf("keycode.key: %d\n", keycode.key);
+	if (keycode.key == ESC_KEY_MAC || keycode.key == ESC_KEY_LINUX)
 		handle_ESC_key(data);
-	else if (keycode == UP_KEY_MAC || keycode == UP_KEY_LINUX)
+	else if (keycode.key == UP_KEY_MAC || keycode.key == UP_KEY_LINUX)
 		move_window(data, 0, -OFFSET_PER_CLICK);
-	else if (keycode == DOWN_KEY_MAC || keycode == DOWN_KEY_LINUX)
+	else if (keycode.key == DOWN_KEY_MAC || keycode.key == DOWN_KEY_LINUX)
 		move_window(data, 0, OFFSET_PER_CLICK);
-	else if (keycode == LEFT_KEY_MAC || keycode == LEFT_KEY_LINUX)
+	else if (keycode.key == LEFT_KEY_MAC || keycode.key == LEFT_KEY_LINUX)
 		move_window(data, -OFFSET_PER_CLICK, 0);
-	else if (keycode == RIGHT_KEY_MAC || keycode == RIGHT_KEY_LINUX)
+	else if (keycode.key == RIGHT_KEY_MAC || keycode.key == RIGHT_KEY_LINUX)
 		move_window(data, OFFSET_PER_CLICK, 0);
-	else if (keycode == PLUS_KEY)
+	else if (keycode.key == PLUS_KEY)
 		adjust_zoom(data, ZOOM_PER_CLICK, WIN_WIDTH / 2.0, WIN_HEIGHT / 2.0);
-	else if (keycode == MINUS_KEY)
+	else if (keycode.key == MINUS_KEY)
 		adjust_zoom(data, 1 / ZOOM_PER_CLICK, WIN_WIDTH / 2.0, WIN_HEIGHT
 			/ 2.0);
-	return (0);
 }

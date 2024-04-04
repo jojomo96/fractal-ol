@@ -1,5 +1,10 @@
 #include "main.h"
 
+static void	ft_error(void)
+{
+	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	exit(EXIT_FAILURE);
+}
 
 int	get_color(int iter)
 {
@@ -23,8 +28,6 @@ int	get_color(int iter)
 	}
 }
 
-
-
 void	put_image(t_data data)
 {
 	int			x;
@@ -43,17 +46,16 @@ void	put_image(t_data data)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			c = init_complex(
-        (x + data.x_offset - WIN_WIDTH / 2.0) * scale + center.re,
-        (y + data.y_offset - WIN_HEIGHT / 2.0) * scale+ center.im);
+			c = init_complex((x + data.x_offset - WIN_WIDTH / 2.0) * scale
+					+ center.re, (y + data.y_offset - WIN_HEIGHT / 2.0) * scale
+					+ center.im);
 			color = get_color(mandelbrot(c, data.zoom));
-			*(int *)(data.addr + (y * data.line_length + x
-						* (data.bits_per_pixel / 8))) = color;
+			mlx_put_pixel(data.img, x, y, color);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	mlx_image_to_window(data.mlx, data.img, 0, 0);
 }
 
 int	main(void)
@@ -61,15 +63,15 @@ int	main(void)
 	t_data	data;
 
 	init_window_data(&data);
-	if (data.mlx == NULL)
+	if (!data.mlx)
 		return (1);
-	if (data.win == NULL)
+	if (!data.img)
 	{
-		free(data.mlx);
-		return (1);
+		ft_error();
 	}
 	put_image(data);
-	mlx_key_hook(data.win, key_press, &data);
+	mlx_key_hook(data.mlx, &key_press, &data);
 	mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
 	return (0);
 }

@@ -1,10 +1,26 @@
 NAME = minilibx_test
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LIBS = -lmlx -L/usr/local/lib -I/usr/local/include -lXext -lX11 -lm -lbsd
 SRC = main.c events.c complex.c fractals/mandelbrot.c utils.c window.c
 OBJDIR = obj
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
+DEP = $(OBJ:%.o=%.d)
+REPO_DIR = MLX42
+REPO_URL = https://github.com/codam-coding-college/MLX42.git
+
+# Automatically generated dependencies
+-include $(DEP)
+
+# Detect operating system
+UNAME_S := $(shell uname -s)
+
+CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42 -MMD -MP
+
+ifeq ($(UNAME_S),Linux)
+    LIBS = -L$(REPO_DIR)/lib -lmlx42 -lm -ldl -lX11 -lXext -lbsd
+endif
+ifeq ($(UNAME_S),Darwin) # macOS is Darwin
+    LIBS = -L$(REPO_DIR)/lib -framework Cocoa -framework OpenGL -framework IOKit MLX42/build/libmlx42.a -Iinclude -lglfw
+endif
 
 all: $(NAME)
 
@@ -12,7 +28,7 @@ $(OBJDIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
+$(NAME): clone_repo build_lib $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(LIBS)
 
 clean:
@@ -23,5 +39,15 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+clone_repo:
+	@if [ ! -d "$(REPO_DIR)" ]; then \
+		git clone $(REPO_URL); \
+	fi
 
+build_lib:
+	@if [ ! -d "$(REPO_DIR)/build" ]; then \
+		mkdir -p $(REPO_DIR)/build; \
+	fi
+	cd $(REPO_DIR)/build && cmake .. && make
+
+.PHONY: all clean fclean re clone_repo build_lib
