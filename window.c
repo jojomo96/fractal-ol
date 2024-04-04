@@ -2,7 +2,7 @@
 
 void	init_window_data(t_data *data)
 {
-	data->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Fract'ol", true);
+	data->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Fract'ol", false);
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->x_offset = 0;
 	data->y_offset = 0;
@@ -44,7 +44,7 @@ void	put_image(t_data data)
 			c = init_complex((p.x + data.x_offset - WIN_WIDTH / 2.0) * scale
 					+ data.center.re, (p.y + data.y_offset - WIN_HEIGHT / 2.0)
 					* scale + data.center.im);
-			color = get_color(mandelbrot(c, data.zoom), data.zoom);
+			color = get_color(data.fractal(c, data.zoom), data.zoom);
 			mlx_put_pixel(data.img, p.x, p.y, color);
 			p.x++;
 		}

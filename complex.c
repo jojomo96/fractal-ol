@@ -6,10 +6,9 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:15:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/04 14:16:01 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/04 15:18:39 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "complex.h"
 
@@ -45,6 +44,12 @@ t_complex	complex_mul(t_complex a, t_complex b)
 
 // Calculates the magnitude (absolute value) of a complex number
 double	complex_abs(t_complex z)
+{
+	return (sqrt(z.re * z.re + z.im * z.im));
+}
+
+// Helper function to calculate the magnitude of a complex number
+double	complex_magnitude(t_complex z)
 {
 	return (sqrt(z.re * z.re + z.im * z.im));
 }
