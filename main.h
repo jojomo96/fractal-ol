@@ -26,7 +26,7 @@
 # define OFFSET_PER_CLICK 50
 # define ZOOM_PER_CLICK 1.1
 
-# define MAX_ITER 100
+# define MAX_ITER 5000
 typedef struct s_data
 {
 	mlx_t		*mlx;

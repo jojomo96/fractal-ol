@@ -45,7 +45,7 @@ void	put_image(t_data data)
 		}
 		p.y++;
 	}
-	printf("zoom: %f\n", data.zoom);
+	printf("inter: %f\n", calculate_max_iter(data.zoom));
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 }
 
