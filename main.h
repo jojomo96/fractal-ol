@@ -45,8 +45,8 @@ typedef struct s_data
 
 typedef struct s_point
 {
-	int				x;
-	int				y;
+	uint32_t				x;
+	uint32_t				y;
 }					t_point;
 
 void				key_press(void *param);
@@ -60,7 +60,7 @@ int					burning_ship(t_complex c, double zoom);
 t_complex			init_complex(double re, double im);
 t_data				*get_data(void);
 void				init_window_data(t_data *data);
-double				calculate_max_iter(double zoom_level);
+int				calculate_max_iter(double zoom_level);
 void				put_image(t_data data);
 
 #endif

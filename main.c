@@ -18,7 +18,7 @@ int	main(void)
 	{
 		ft_error();
 	}
-	data.fractal = &burning_ship;
+	data.fractal = &mandelbrot;
 	put_image(data);
 	mlx_scroll_hook(data.mlx, &scroll_event, &data);
 	mlx_loop_hook(data.mlx, &key_press, &data);

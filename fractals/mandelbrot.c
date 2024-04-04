@@ -6,13 +6,13 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:21:48 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/04 13:40:47 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/04 16:42:44 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-double	calculate_max_iter(double zoom_level)
+int	calculate_max_iter(double zoom_level)
 {
 	double	iter_scale;
 	double	iter;
@@ -28,7 +28,7 @@ double	calculate_max_iter(double zoom_level)
 	{
 		iter = MAX_ITER;
 	}
-	return (iter);
+	return ((int)iter);
 }
 
 static int	is_in_main_cardioid_or_bulb(t_complex c)
@@ -43,7 +43,7 @@ static int	is_in_main_cardioid_or_bulb(t_complex c)
 int	mandelbrot(t_complex c, double zoom_level)
 {
 	int			i;
-	double		max_iter;
+	int			max_iter;
 	t_complex	z;
 	t_complex	old_z;
 
