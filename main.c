@@ -6,14 +6,14 @@ static void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	get_color(int iter)
+int	get_color(int iter, double zoom_level)
 {
 	double	t;
 
 	int r, g, b, a;
-	if (iter == MAX_ITER)
+	if (iter == calculate_max_iter(zoom_level))
 		return (0x000000FF);
-	t = (double)iter / (double)MAX_ITER;
+	t = (double)iter / (double)calculate_max_iter(zoom_level);
 	r = (int)(9 * (1 - t) * t * t * t * 255);
 	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
@@ -26,10 +26,8 @@ void	put_image(t_data data)
 	t_point		p;
 	double		scale;
 	t_complex	c;
-	t_complex	center;
 	int			color;
 
-	center = init_complex(-0.75, 0);
 	scale = data.zoom / WIN_WIDTH;
 	p.x = 0;
 	p.y = 0;
@@ -39,14 +37,15 @@ void	put_image(t_data data)
 		while (p.x < WIN_WIDTH)
 		{
 			c = init_complex((p.x + data.x_offset - WIN_WIDTH / 2.0) * scale
-					+ center.re, (p.y + data.y_offset - WIN_HEIGHT / 2.0)
-					* scale + center.im);
-			color = get_color(mandelbrot(c, data.zoom));
+					+ data.center.re, (p.y + data.y_offset - WIN_HEIGHT / 2.0)
+					* scale + data.center.im);
+			color = get_color(mandelbrot(c, data.zoom), data.zoom);
 			mlx_put_pixel(data.img, p.x, p.y, color);
 			p.x++;
 		}
 		p.y++;
 	}
+	printf("zoom: %f\n", data.zoom);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 }
 
@@ -62,7 +61,9 @@ int	main(void)
 		ft_error();
 	}
 	put_image(data);
+	mlx_scroll_hook(data.mlx, &scroll_event, &data);
 	mlx_loop_hook(data.mlx, &key_press, &data);
+	mlx_cursor_hook(data.mlx, &mouse_move_event, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	return (0);

@@ -1,6 +1,6 @@
 NAME = minilibx_test
 CC = cc
-SRC = main.c events/key_events.c complex.c fractals/mandelbrot.c utils.c window.c
+SRC = main.c events/key_events.c events/mouse_events.c events/scroll_events.c complex.c fractals/mandelbrot.c utils.c window.c
 OBJDIR = obj
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 REPO_DIR = MLX42

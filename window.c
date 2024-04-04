@@ -8,4 +8,5 @@ void	init_window_data(t_data *data)
 	data->y_offset = 0;
 	data->zoom = 2.0;
 	data->scale = data->zoom / WIN_WIDTH;
+	data->center = init_complex(-0.75, 0);
 }
