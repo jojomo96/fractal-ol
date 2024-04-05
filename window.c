@@ -26,31 +26,7 @@ void	init_window_data(t_data *data)
 // 	return ((r << 24) | (g << 16) | (b << 8) | a);
 // }
 
-uint32_t	get_color(int iter, double zoom_level)
-{
-	int		max_iter;
-	float	normalized;
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
 
-	max_iter = calculate_max_iter(zoom_level);
-	if (iter == max_iter)
-	{
-		return (0x000000FF);
-	}
-	else
-	{
-		normalized = (float)iter / max_iter;
-		red = (uint8_t)(9 * (1 - normalized) * normalized * normalized
-				* normalized * 255);
-		green = (uint8_t)(15 * (1 - normalized) * (1 - normalized) * normalized
-				* normalized * 255);
-		blue = (uint8_t)(8.5 * (1 - normalized) * (1 - normalized) * (1
-					- normalized) * normalized * 255);
-		return (u_int32_t)((red << 24) | (green << 16) | (blue << 8) | 0xFF);
-	}
-}
 
 // int get_color_julia(int iter, double zoom_level)
 // {
@@ -105,7 +81,6 @@ void	put_image(t_data data)
 	t_point		p;
 	double		scale;
 	t_complex	c;
-	uint32_t	color;
 
 	scale = data.zoom / WIN_WIDTH;
 	p.x = 0;
@@ -118,12 +93,14 @@ void	put_image(t_data data)
 			c = init_complex((p.x + data.x_offset - WIN_WIDTH / 2.0) * scale
 					+ data.center.re, (p.y + data.y_offset - WIN_HEIGHT / 2.0)
 					* scale + data.center.im);
-			color = get_color(data.fractal(c, data.zoom), data.zoom);
+			u_int32_t color = data.fractal(c, data.zoom);
+			if(p.x == 459 && p.y == 547)
+				printf("color: %d\n", color);
 			mlx_put_pixel(data.img, p.x, p.y, color);
 			p.x++;
 		}
 		p.y++;
 	}
-	printf("inter: %d\n", calculate_max_iter(data.zoom));
+	printf("inter: %f\n", data.zoom);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/05 12:24:30 by jmoritz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 static void	ft_error(void)
@@ -5,7 +17,6 @@ static void	ft_error(void)
 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
-
 
 int	main(void)
 {
@@ -18,7 +29,7 @@ int	main(void)
 	{
 		ft_error();
 	}
-	data.fractal = &mandelbrot;
+	data.fractal = &julia;
 	put_image(data);
 	mlx_scroll_hook(data.mlx, &scroll_event, &data);
 	mlx_loop_hook(data.mlx, &key_press, &data);

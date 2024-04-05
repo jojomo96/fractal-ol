@@ -28,7 +28,7 @@
 
 # define MAX_ITER 5000
 
-typedef int			(*fractal_func)(t_complex, double);
+typedef u_int32_t	(*fractal_func)(t_complex, double);
 typedef struct s_data
 {
 	mlx_t			*mlx;
@@ -45,22 +45,22 @@ typedef struct s_data
 
 typedef struct s_point
 {
-	uint32_t				x;
-	uint32_t				y;
+	uint32_t		x;
+	uint32_t		y;
 }					t_point;
 
 void				key_press(void *param);
 void				scroll_event(double xdelta, double ydelta, void *param);
 void				mouse_move_event(double x, double y, void *param);
 
-int					mandelbrot(t_complex c, double zoom_level);
-int					julia(t_complex z, double zoom);
+u_int32_t			mandelbrot(t_complex c, double zoom_level);
+u_int32_t					julia(t_complex z, double zoom);
 int					burning_ship(t_complex c, double zoom);
 
 t_complex			init_complex(double re, double im);
 t_data				*get_data(void);
 void				init_window_data(t_data *data);
-int				calculate_max_iter(double zoom_level);
+int					calculate_max_iter(double zoom_level);
 void				put_image(t_data data);
 
 #endif
