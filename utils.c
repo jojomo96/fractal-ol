@@ -9,9 +9,21 @@ t_complex	init_complex(double re, double im)
 	return (c);
 }
 
-t_data	*get_data(void)
+int	calculate_max_iter(double zoom_level)
 {
-	static t_data	data;
+	double	iter_scale;
+	double	iter;
 
-	return (&data);
+	iter_scale = 1.0 / zoom_level;
+	iter = log(iter_scale) * 100.0;
+	iter = floor(iter);
+	if (iter < 100)
+	{
+		iter = 100;
+	}
+	else if (iter > MAX_ITER)
+	{
+		iter = MAX_ITER;
+	}
+	return ((int)iter);
 }

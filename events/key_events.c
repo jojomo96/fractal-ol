@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:08:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/04 15:09:00 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/05 14:43:10 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	move_window(t_data *data, int x_offset, int y_offset)
 	put_image(*data);
 }
 
+int	is_key(void *mlx, int key)
+{
+	return (mlx_is_key_down(mlx, key));
+}
+
 void	key_press(void *param)
 {
 	t_data	*data;
@@ -34,19 +39,15 @@ void	key_press(void *param)
 	move_up_down = 0;
 	move_left_right = 0;
 	data = (t_data *)param;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+	if (is_key(data->mlx, MLX_KEY_ESCAPE))
 		handle_ESC_key(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx,
-			MLX_KEY_W))
+	if (is_key(data->mlx, MLX_KEY_UP) || is_key(data->mlx, MLX_KEY_W))
 		move_up_down = -OFFSET_PER_CLICK;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)
-		|| mlx_is_key_down(data->mlx, MLX_KEY_S))
+	else if (is_key(data->mlx, MLX_KEY_DOWN) || is_key(data->mlx, MLX_KEY_S))
 		move_up_down = OFFSET_PER_CLICK;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || mlx_is_key_down(data->mlx,
-			MLX_KEY_A))
+	if (is_key(data->mlx, MLX_KEY_LEFT) || is_key(data->mlx, MLX_KEY_A))
 		move_left_right = -OFFSET_PER_CLICK;
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT)
-		|| mlx_is_key_down(data->mlx, MLX_KEY_D))
+	else if (is_key(data->mlx, MLX_KEY_RIGHT) || is_key(data->mlx, MLX_KEY_D))
 		move_left_right = OFFSET_PER_CLICK;
 	if (move_up_down != 0 || move_left_right != 0)
 		move_window(data, move_left_right, move_up_down);

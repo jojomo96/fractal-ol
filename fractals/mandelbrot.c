@@ -6,30 +6,13 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:21:48 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/05 12:16:55 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/05 14:41:12 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-int	calculate_max_iter(double zoom_level)
-{
-	double	iter_scale;
-	double	iter;
 
-	iter_scale = 1.0 / zoom_level;
-	iter = log(iter_scale) * 100.0;
-	iter = floor(iter);
-	if (iter < 100)
-	{
-		iter = 100;
-	}
-	else if (iter > MAX_ITER)
-	{
-		iter = MAX_ITER;
-	}
-	return ((int)iter);
-}
 
 static int	is_in_main_cardioid_or_bulb(t_complex c)
 {
@@ -40,40 +23,40 @@ static int	is_in_main_cardioid_or_bulb(t_complex c)
 			* (c.re + 1) + c.im * c.im < 1.0 / 16));
 }
 
-int	get_color(int iter, double zoom_level)
+// Helper function to interpolate between two colors in RGBA format
+static int	float_to_color_component(double value)
 {
-	int		max_iter;
-	float	normalized;
-	int		red;
-	int		green;
-	int		blue;
+	return (int)((sin(value) + 1.0) * 127.5);
+}
 
-	max_iter = calculate_max_iter(zoom_level);
-	if (iter >= max_iter)
+// Generates funky colors based on iteration count
+int	get_color(int iter, int max_iter)
+{
+	double	t;
+	int		r;
+	int		g;
+	int		b;
+
+	if (iter == max_iter)
 	{
-		return ((0 << 24) | (0 << 16) | (0 << 8) | 0xFF);
+		return (0x000000FF);
 	}
 	else
 	{
-		normalized = (float)iter / max_iter;
-		red = (int)(9 * (1 - normalized) * normalized * normalized * normalized
-				* 255);
-		green = (int)(15 * (1 - normalized) * (1 - normalized) * normalized
-				* normalized * 255);
-		blue = (int)(8.5 * (1 - normalized) * (1 - normalized) * (1
-					- normalized) * normalized * 255);
-		return ((red << 24) | (green << 16) | (blue << 8) | 0xFF);
+		t = (double)iter / max_iter;
+		r = float_to_color_component(t * 12.0 + 0.0);
+		g = float_to_color_component(t * 12.0 + 2.0);
+		b = float_to_color_component(t * 12.0 + 4.0);
+		return ((r << 24) | (g << 16) | (b << 8) | 255);
 	}
 }
 
-int	calc_mandelbrot(t_complex c, double zoom_level)
+int	calc_mandelbrot(t_complex c, int max_iter)
 {
 	int			i;
-	int			max_iter;
 	t_complex	z;
 	t_complex	old_z;
 
-	max_iter = calculate_max_iter(zoom_level);
 	if (is_in_main_cardioid_or_bulb(c))
 		return (max_iter);
 	z = init_complex(0, 0);
@@ -93,7 +76,7 @@ int	calc_mandelbrot(t_complex c, double zoom_level)
 	return (i);
 }
 
-u_int32_t	mandelbrot(t_complex c, double zoom_level)
+u_int32_t	mandelbrot(t_complex c, int max_iter)
 {
-	return ((u_int32_t)get_color(calc_mandelbrot(c, zoom_level), zoom_level));
+	return ((u_int32_t)get_color(calc_mandelbrot(c, max_iter), max_iter));
 }

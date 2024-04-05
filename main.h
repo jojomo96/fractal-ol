@@ -3,6 +3,7 @@
 
 # include "complex.h"
 # include <MLX42.h>
+# include <pthread.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -20,15 +21,16 @@
 # define PLUS_KEY 334
 # define MINUS_KEY 333
 
-# define WIN_WIDTH 1200
-# define WIN_HEIGHT 1000
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 # define OFFSET_PER_CLICK 10
 # define ZOOM_PER_CLICK 1.1
 
 # define MAX_ITER 5000
 
-typedef u_int32_t	(*fractal_func)(t_complex, double);
+typedef u_int32_t	(*fractal_func)(t_complex, int);
+
 typedef struct s_data
 {
 	mlx_t			*mlx;
@@ -41,6 +43,7 @@ typedef struct s_data
 	double			zoom;
 	double			scale;
 	fractal_func	fractal;
+	int				max_iter;
 }					t_data;
 
 typedef struct s_point
@@ -49,16 +52,22 @@ typedef struct s_point
 	uint32_t		y;
 }					t_point;
 
+typedef struct s_thread_data
+{
+	uint32_t		start_y;
+	uint32_t		end_y;
+	t_data			data;
+}					t_thread_data;
+
 void				key_press(void *param);
 void				scroll_event(double xdelta, double ydelta, void *param);
 void				mouse_move_event(double x, double y, void *param);
 
-u_int32_t			mandelbrot(t_complex c, double zoom_level);
-u_int32_t					julia(t_complex z, double zoom);
-int					burning_ship(t_complex c, double zoom);
+u_int32_t			mandelbrot(t_complex c, int max_iter);
+u_int32_t			julia(t_complex z, double zoom);
+u_int32_t			burning_ship(t_complex c, int max_iter);
 
 t_complex			init_complex(double re, double im);
-t_data				*get_data(void);
 void				init_window_data(t_data *data);
 int					calculate_max_iter(double zoom_level);
 void				put_image(t_data data);
