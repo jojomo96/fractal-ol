@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/05 14:49:06 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/06 12:41:25 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(void)
 		ft_error();
 	}
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	data.fractal = &mandelbrot;
+	data.fractal = &burning_ship;
 	put_image(data);
 	mlx_scroll_hook(data.mlx, &scroll_event, &data);
 	mlx_loop_hook(data.mlx, &key_press, &data);

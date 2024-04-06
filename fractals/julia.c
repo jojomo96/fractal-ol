@@ -6,13 +6,13 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:19:03 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/05 12:23:38 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/06 12:46:56 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-int	get_color_julia(int iter, double zoom_level)
+int	get_color_julia(int iter, int max_iter)
 {
 	double	normalized;
 	double	hue;
@@ -22,9 +22,9 @@ int	get_color_julia(int iter, double zoom_level)
 	int		b;
 	int		a;
 
-	if (iter == calculate_max_iter(zoom_level))
+	if (iter == max_iter)
 		return (0x000000FF);
-	normalized = (double)iter / calculate_max_iter(zoom_level);
+	normalized = (double)iter / max_iter;
 	hue = normalized * 360.0;
 	rad = hue * M_PI / 180.0;
 	r = (int)((sin(rad) + 1) * 127.5);
@@ -34,16 +34,14 @@ int	get_color_julia(int iter, double zoom_level)
 	return ((a << 24) | (r << 16) | (g << 8) | b);
 }
 
-int	calc_julia(t_complex z, double zoom)
+int	calc_julia(t_complex z, int max_iter)
 {
 	int			iter;
 	t_complex	c;
 	t_complex	z_temp;
-	double		max_iter;
 
 	iter = 0;
 	c = init_complex(-0.7, 0.27015);
-	max_iter = calculate_max_iter(zoom);
 	while (iter < max_iter && complex_magnitude(z) <= 2.0)
 	{
 		z_temp = init_complex(z.re * z.re - z.im * z.im + c.re, 2.0 * z.re
@@ -54,7 +52,7 @@ int	calc_julia(t_complex z, double zoom)
 	return (iter);
 }
 
-u_int32_t julia(t_complex z, double zoom)
+u_int32_t julia(t_complex z, int max_iter)
 {
-	return ((u_int32_t)get_color_julia(calc_julia(z, zoom), zoom));
+	return ((u_int32_t)get_color(calc_julia(z, max_iter), max_iter));
 }

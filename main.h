@@ -59,17 +59,26 @@ typedef struct s_thread_data
 	t_data			data;
 }					t_thread_data;
 
+typedef struct s_rgb
+{
+	uint8_t			r;
+	uint8_t			g;
+	uint8_t			b;
+}					t_rgb;
+
 void				key_press(void *param);
 void				scroll_event(double xdelta, double ydelta, void *param);
 void				mouse_move_event(double x, double y, void *param);
 
 u_int32_t			mandelbrot(t_complex c, int max_iter);
-u_int32_t			julia(t_complex z, double zoom);
+u_int32_t			julia(t_complex z, int max_iter);
 u_int32_t			burning_ship(t_complex c, int max_iter);
 
 t_complex			init_complex(double re, double im);
 void				init_window_data(t_data *data);
 int					calculate_max_iter(double zoom_level);
 void				put_image(t_data data);
+int					encode_rgb_as_int(t_rgb color);
+int					get_color(int iter, int max_iter);
 
 #endif

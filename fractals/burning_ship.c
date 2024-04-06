@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:29:04 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/05 14:07:39 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/06 12:47:02 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ int	get_color_burning_ship(int iter, int max_iter)
 
 u_int32_t	burning_ship(t_complex c, int max_iter)
 {
-	return ((u_int32_t)get_color_burning_ship(calc_burning_ship(c, max_iter), max_iter));
+	return ((u_int32_t)get_color(calc_burning_ship(c, max_iter), max_iter));
 }
