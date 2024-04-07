@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:19:03 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:46:54 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 16:45:39 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int	calc_julia(t_complex z, int max_iter)
 
 u_int32_t	julia(t_complex z, int max_iter)
 {
-	return ((u_int32_t)get_color(calc_julia(z, max_iter), max_iter));
+	return ((u_int32_t)get_color_rgb(calc_julia(z, max_iter), max_iter));
 }

@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 14:50:43 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 17:00:00 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char **argv)
 	put_image(data);
 	mlx_scroll_hook(data.mlx, &scroll_event, &data);
 	mlx_loop_hook(data.mlx, &key_press, &data);
+	mlx_key_hook(data.mlx, &key_color_hook, &data);
 	mlx_cursor_hook(data.mlx, &mouse_move_event, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

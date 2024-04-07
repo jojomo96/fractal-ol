@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:21:48 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:25:26 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 16:45:39 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int	calc_mandelbrot(t_complex c, int max_iter)
 
 u_int32_t	mandelbrot(t_complex c, int max_iter)
 {
-	return ((u_int32_t)get_color(calc_mandelbrot(c, max_iter), max_iter));
+	return ((u_int32_t)get_color_rgb(calc_mandelbrot(c, max_iter), max_iter));
 }

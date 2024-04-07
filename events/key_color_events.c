@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burning_ship.c                                     :+:      :+:    :+:   */
+/*   key_color_events.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 15:29:04 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 16:45:39 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/04/07 16:33:16 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/07 16:59:48 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-int	calc_burning_ship(t_complex c, int max_iter)
+void	key_color_hook(mlx_key_data_t keydata, void* param)
 {
-	int			iter;
-	t_complex	z;
-	t_complex	temp;
+	t_data	*data;
 
-	iter = 0;
-	z = init_complex(0, 0);
-	while (iter < max_iter && complex_abs(z) <= 2.0)
+	data = (t_data *)param;
+	if (keydata.key == MLX_KEY_1 && keydata.action == MLX_PRESS)
 	{
-		z = init_complex(fabs(z.re), fabs(z.im));
-		temp = complex_mul(z, z);
-		z = complex_add(temp, c);
-		iter++;
+		switch_color_palette();
+		put_image(*data);
 	}
-	return (iter);
-}
 
-u_int32_t	burning_ship(t_complex c, int max_iter)
-{
-	return ((u_int32_t)get_color_rgb(calc_burning_ship(c, max_iter), max_iter));
 }
