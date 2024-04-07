@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 10:51:10 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:38:40 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include "complex.h"
 # include "libftprintf/ft_printf.h"
 # include <MLX42.h>
+# include <errno.h>
 # include <pthread.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <errno.h>
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -37,6 +37,7 @@ typedef struct s_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
+	mlx_image_t		*overlay;
 	t_complex		center;
 	double			mouse_x;
 	double			mouse_y;
@@ -92,5 +93,9 @@ int					encode_rgb_as_int(t_rgb color);
 int					get_color(int iter, int max_iter);
 void				switch_color_palette(void);
 int					ft_strcmp(const char *s1, const char *s2);
+
+// overlay
+void				update_overlay(t_data *data);
+void				create_overlay(t_data *data);
 
 #endif

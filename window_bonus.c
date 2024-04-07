@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:46:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:50:47 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:38:40 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	put_image(t_data data)
 	i = 0;
 	while (i < THREAD_COUNT)
 		pthread_join(threads[i++], NULL);
+	update_overlay(&data);
 }

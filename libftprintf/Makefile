@@ -13,14 +13,10 @@ SRCS := ft_printf.c \
 		ft_handle_char.c \
 		ft_getters.c \
 		ft_dynamic_char_array.c \
-		ft_calloc.c \
 		ft_estimate_size.c \
 		ft_handle_format.c \
-		ft_memcpy.c \
 		ft_handle_string.c \
-		ft_strlen.c \
 		ft_handle_int.c \
-		ft_itoa.c \
 		ft_handle_pointer.c \
 		ft_handle_hex.c \
 		ft_hex_helper.c \

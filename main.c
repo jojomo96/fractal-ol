@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 10:48:51 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:42:38 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,16 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	parse_args(argc, argv, &data);
 	init_window_data(&data);
 	if (!data.mlx)
 		return (1);
 	if (!data.img)
-	{
 		ft_error();
-	}
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	parse_args(argc, argv, &data);
+	create_overlay(&data);
+	// mlx_image_to_window(data.mlx, data.overlay, 0, 0);
+
 	put_image(data);
 	mlx_scroll_hook(data.mlx, &scroll_event, &data);
 	mlx_loop_hook(data.mlx, &key_press, &data);

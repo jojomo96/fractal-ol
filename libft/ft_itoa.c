@@ -6,11 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:39:17 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/12 20:19:40 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/06 11:58:43 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 /**
  * Returns the number of digits in the given number.
@@ -18,16 +18,13 @@
  * @param nbr The number to be checked.
  * @return The number of digits in the number.
  */
-int	ft_nbrlen(long nbr)
+static int	ft_nbrlen(long nbr)
 {
 	int	len;
 
-	len = 0;
-	if (nbr <= 0)
-	{
-		len = 1;
-		nbr = -nbr;
-	}
+	len = 1;
+	if (nbr > 0)
+		len = 0;
 	while (nbr != 0)
 	{
 		nbr /= 10;
@@ -43,59 +40,29 @@ int	ft_nbrlen(long nbr)
  * @param n The integer to be converted.
  * @return The string representing the integer. NULL if the allocation fails.
  */
-void	reverse_str(char *str, int length)
+char	*ft_itoa(int n)
 {
-	int		start;
-	int		end;
-	char	temp;
+	long	nbr;
+	int		len;
+	char	*str;
 
-	start = 0;
-	end = length - 1;
-	while (start < end)
+	nbr = n;
+	len = ft_nbrlen(nbr);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	if (nbr < 0)
 	{
-		temp = str[start];
-		str[start] = str[end];
-		str[end] = temp;
-		start++;
-		end--;
+		str[0] = '-';
+		nbr = -nbr;
 	}
-}
-
-void	ft_do_negative(long *n, int *is_negative)
-{
-	if (*n < 0)
+	if (nbr == 0)
+		str[0] = '0';
+	while (nbr)
 	{
-		*is_negative = 1;
-		*n = -(*n);
+		str[--len] = '0' + (nbr % 10);
+		nbr /= 10;
 	}
-}
-
-// Convert long to string without dynamic memory allocation
-char	*ft_itoa(long n)
-{
-	static char	str[BUFFER_SIZE];
-	int			i;
-	int			is_negative;
-	long		temp_n;
-
-	i = 0;
-	temp_n = n;
-	if (n == 0)
-	{
-		str[i++] = '0';
-		str[i] = '\0';
-		return (str);
-	}
-	is_negative = 0;
-	ft_do_negative(&temp_n, &is_negative);
-	while (temp_n != 0 && i < BUFFER_SIZE - 2)
-	{
-		str[i++] = (temp_n % 10) + '0';
-		temp_n /= 10;
-	}
-	if (is_negative)
-		str[i++] = '-';
-	str[i] = '\0';
-	reverse_str(str, i);
 	return (str);
 }

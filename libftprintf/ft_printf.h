@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/12 20:53:45 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 12:29:05 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 
 typedef struct s_dynamic_char_array
 {
@@ -46,13 +47,8 @@ typedef struct s_params
 
 # define BUFFER_SIZE 20
 
-void			*ft_memcpy(void *dst, const void *src, size_t n);
-void			*ft_calloc(size_t count, size_t size);
-int				ft_get_flags(const char **format);
-size_t			ft_strlen(const char *s);
 
-char			*ft_itoa(long n);
-int				ft_nbrlen(long nbr);
+int				ft_get_flags(const char **format);
 
 // ft_dynamic_char_array.c
 int				ft_dca_init(t_dca *array, size_t initial_capacity);

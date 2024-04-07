@@ -6,21 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 23:10:48 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/10 20:42:52 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/03/07 00:10:51 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned char	*ptr;
-
-	ptr = (unsigned char *)b;
-	while (len--)
-		*ptr++ = (unsigned char)c;
-	return (b);
-}
+#include "libft.h"
 
 /**
  * Allocates memory for an array of elements, each with a size of `size`,
@@ -30,6 +20,7 @@ void	*ft_memset(void *b, int c, size_t len)
  * @param size The size of each element in bytes.
  * @return A pointer to the allocated memory, or NULL if the allocation fails.
  */
+
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
@@ -41,10 +32,6 @@ void	*ft_calloc(size_t count, size_t size)
 	}
 	total_size = count * size;
 	ptr = malloc(total_size);
-	if (!ptr)
-	{
-		return (NULL);
-	}
 	if (ptr)
 		ft_memset(ptr, 0, total_size);
 	return (ptr);

@@ -1,56 +1,65 @@
 NAME = fractol
 CC = cc
-# Include the header file location of libftprintf
-CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42 -Ofast -I../libftprintf/include
-# Initial SRC list
-SRC = main.c colors.c events/key_events.c events/mouse_events.c events/scroll_events.c complex.c fractals/burning_ship.c fractals/julia.c fractals/mandelbrot.c utils.c
-OBJDIR = obj
-OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 REPO_DIR = MLX42
 REPO_URL = https://github.com/codam-coding-college/MLX42.git
-LIBFT_DIR = libftprintf
+LIBFT_PRINTF_DIR = libftprintf
+LIBFT_DIR = libft
+OBJDIR = obj
+
+# Compiler and linker flags
+CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42 -Ofast -I$(LIBFT_DIR) -I$(LIBFT_PRINTF_DIR)
+LDFLAGS =
 LIBS =
 
-UNAME_S := $(shell uname -s)
+# Source and object files
+SRC = main.c colors.c overlay/overlay.c events/key_events.c events/mouse_events.c events/scroll_events.c complex.c fractals/burning_ship.c fractals/julia.c fractals/mandelbrot.c utils.c
+OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
+# Platform-specific settings
+UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
     LIBS += -L$(REPO_DIR)/lib -lmlx42 -lm -ldl -lX11 -lXext -lbsd
 endif
 ifeq ($(UNAME_S),Darwin)
-    LIBS += -L$(REPO_DIR)/lib -framework Cocoa -framework OpenGL -framework IOKit MLX42/build/libmlx42.a -Iinclude -lglfw
+    LIBS += -L$(REPO_DIR)/lib -framework Cocoa -framework OpenGL -framework IOKit MLX42/build/libmlx42.a -lglfw
 endif
 
 # Link with libftprintf.a
-LIBS += -L $(LIBFT_DIR) -lftprintf
+LIBS +=  -L$(LIBFT_DIR) -lft -L$(LIBFT_PRINTF_DIR) -lftprintf
 
+# Bonus files handling
 BONUS =
-
 ifeq ($(BONUS),yes)
     SRC += window_bonus.c
 else
     SRC += window.c
 endif
 
-OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
+# Targets
+all: $(NAME)
 
-all: libftprintf $(NAME)
+
+$(NAME): libft libftprintf clone_repo build_lib $(OBJ)
+	$(CC) $(OBJ) -o $@ $(LIBS) $(LDFLAGS)
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): clone_repo build_lib $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LIBS)
+libft:
+	$(MAKE) -C $(LIBFT_DIR)
 
 libftprintf:
-	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_PRINTF_DIR)
 
 clean:
 	rm -fr $(OBJDIR)
+	$(MAKE) -C $(LIBFT_PRINTF_DIR) clean
 	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_PRINTF_DIR) fclean
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
@@ -69,4 +78,7 @@ build_lib:
 	fi
 	cd $(REPO_DIR)/build && cmake .. && make
 
-.PHONY: all clean fclean re bonus clone_repo build_lib libftprintf
+debug: CFLAGS += -g -DDEBUG
+debug: re
+
+.PHONY: all clean fclean re bonus clone_repo build_lib libft libftprintf debug

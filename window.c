@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:52:04 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:52:06 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:46:10 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	put_image(t_data data)
 		}
 		p.y++;
 	}
+	update_overlay(&data);
 }
