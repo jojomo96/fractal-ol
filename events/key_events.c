@@ -6,13 +6,13 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:08:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:23:50 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 16:20:38 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-void	handle_ESC_key(t_data *data)
+void	handle_esc_key(t_data *data)
 {
 	mlx_terminate(data->mlx);
 	exit(0);
@@ -40,7 +40,7 @@ void	key_press(void *param)
 	move_left_right = 0;
 	data = (t_data *)param;
 	if (is_key(data->mlx, MLX_KEY_ESCAPE))
-		handle_ESC_key(data);
+		handle_esc_key(data);
 	if (is_key(data->mlx, MLX_KEY_UP) || is_key(data->mlx, MLX_KEY_W))
 		move_up_down = -OFFSET_PER_CLICK;
 	else if (is_key(data->mlx, MLX_KEY_DOWN) || is_key(data->mlx, MLX_KEY_S))

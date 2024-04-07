@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 16:54:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 12:29:05 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 14:49:28 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_params
 }				t_params;
 
 # define BUFFER_SIZE 20
-
 
 int				ft_get_flags(const char **format);
 

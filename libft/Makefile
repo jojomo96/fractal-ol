@@ -42,7 +42,8 @@ SRCS := ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c \
 		ft_striteri.c \
-		ft_dtoa.c
+		ft_dtoa.c \
+		ft_strcspn.c
 
 # Bonus source files
 BONUS_SRCS := ft_lstadd_back_bonus.c \

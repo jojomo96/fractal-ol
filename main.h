@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 14:38:40 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 15:14:43 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@
 # define MAX_ITER 5000
 # define MIN_ITER 30
 
+# define THREAD_COUNT 12
+
 typedef u_int32_t	(*t_fractal_func)(t_complex, int);
 
 typedef struct s_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_image_t		*overlay;
 	t_complex		center;
 	double			mouse_x;
 	double			mouse_y;
