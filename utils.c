@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/07 09:48:29 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/07 09:48:38 by jmoritz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 t_complex	init_complex(double re, double im)
@@ -24,7 +36,7 @@ int	calculate_max_iter(double zoom_level)
 	return ((int)iter);
 }
 
-int encode_rgb_as_int(t_rgb color)
+int	encode_rgb_as_int(t_rgb color)
 {
 	return ((color.r << 24) | (color.g << 16) | (color.b << 8) | 255);
 }

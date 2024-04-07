@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/07 09:52:04 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/07 09:52:06 by jmoritz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	init_window_data(t_data *data)
@@ -16,11 +28,12 @@ void	put_image(t_data data)
 	t_point		p;
 	double		scale;
 	t_complex	c;
+	u_int32_t	color;
 
 	scale = data.zoom / WIN_WIDTH;
 	p.x = 0;
 	p.y = 0;
-    data.max_iter = calculate_max_iter(data.zoom);
+	data.max_iter = calculate_max_iter(data.zoom);
 	while (p.y < WIN_HEIGHT)
 	{
 		p.x = 0;
@@ -29,7 +42,7 @@ void	put_image(t_data data)
 			c = init_complex((p.x + data.x_offset - WIN_WIDTH / 2.0) * scale
 					+ data.center.re, (p.y + data.y_offset - WIN_HEIGHT / 2.0)
 					* scale + data.center.im);
-			u_int32_t color = data.fractal(c, data.max_iter);
+			color = data.fractal(c, data.max_iter);
 			mlx_put_pixel(data.img, p.x, p.y, color);
 			p.x++;
 		}

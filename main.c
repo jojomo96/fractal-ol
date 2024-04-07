@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:29:45 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:56:13 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
@@ -37,6 +37,5 @@ int	main(void)
 	mlx_cursor_hook(data.mlx, &mouse_move_event, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
-	system("leaks fractol");
 	return (0);
 }

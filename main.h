@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/07 09:44:58 by jmoritz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MAIN_H
 # define MAIN_H
 
@@ -7,19 +19,6 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# define ESC_KEY_MAC 256
-# define ESC_KEY_LINUX 65307
-
-# define UP_KEY_MAC 265
-# define UP_KEY_LINUX 65362
-# define DOWN_KEY_MAC 264
-# define DOWN_KEY_LINUX 65364
-# define LEFT_KEY_MAC 263
-# define LEFT_KEY_LINUX 65361
-# define RIGHT_KEY_MAC 262
-# define RIGHT_KEY_LINUX 65363
-# define PLUS_KEY 334
-# define MINUS_KEY 333
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -30,7 +29,7 @@
 # define MAX_ITER 5000
 # define MIN_ITER 30
 
-typedef u_int32_t	(*fractal_func)(t_complex, int);
+typedef u_int32_t	(*t_fractal_func)(t_complex, int);
 
 typedef struct s_data
 {
@@ -43,7 +42,7 @@ typedef struct s_data
 	double			y_offset;
 	double			zoom;
 	double			scale;
-	fractal_func	fractal;
+	t_fractal_func	fractal;
 	int				max_iter;
 }					t_data;
 

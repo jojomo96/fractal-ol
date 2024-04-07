@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:46:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:23:03 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:50:47 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	*render_section(void *arg)
 	t_point			p;
 	double			scale;
 	t_complex		c;
-	u_int32_t		color;
 
 	thread_data = (t_thread_data *)arg;
 	scale = thread_data->data.zoom / WIN_WIDTH;
@@ -45,8 +44,8 @@ void	*render_section(void *arg)
 						/ 2.0) * scale + thread_data->data.center.re, (p.y
 						+ thread_data->data.y_offset - WIN_HEIGHT / 2.0) * scale
 					+ thread_data->data.center.im);
-			color = thread_data->data.fractal(c, thread_data->data.max_iter);
-			mlx_put_pixel(thread_data->data.img, p.x, p.y, color);
+			mlx_put_pixel(thread_data->data.img, p.x, p.y,
+				thread_data->data.fractal(c, thread_data->data.max_iter));
 			p.x++;
 		}
 		p.y++;
@@ -58,19 +57,18 @@ void	put_image(t_data data)
 {
 	pthread_t		threads[THREAD_COUNT];
 	t_thread_data	thread_data[THREAD_COUNT];
-	int				i = 0, segment_height;
+	int				i;
+	int				segment_height;
 
-	i = 0, segment_height = WIN_HEIGHT / THREAD_COUNT;
+	i = 0;
+	segment_height = WIN_HEIGHT / THREAD_COUNT;
 	while (i < THREAD_COUNT)
 	{
 		thread_data[i].data = data;
 		thread_data[i].start_y = i * segment_height;
 		thread_data[i].end_y = (i + 1) * segment_height;
-		// Ensure the last thread covers any remaining rows
 		if (i == THREAD_COUNT - 1)
-		{
 			thread_data[i].end_y = WIN_HEIGHT;
-		}
 		if (pthread_create(&threads[i], NULL, render_section, &thread_data[i]))
 		{
 			perror("Failed to create thread");
@@ -79,11 +77,6 @@ void	put_image(t_data data)
 		i++;
 	}
 	i = 0;
-	// Wait for all threads to complete
 	while (i < THREAD_COUNT)
-	{
-		pthread_join(threads[i], NULL);
-		i++;
-	}
-	// mlx_image_to_window(data.mlx, data.img, 0, 0);
+		pthread_join(threads[i++], NULL);
 }

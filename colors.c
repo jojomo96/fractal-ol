@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:06:34 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:21:33 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:47:55 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ void	switch_color_palette(void)
 
 static t_color_palette	get_current_color_palette(void)
 {
-	static const t_color_palette color_paletts[] = {
-		{12.0, 0.0, 2.0, 4.0},
-		{10.0, 1.0, 3.0, 5.0},
-		{8.0, 2.0, 4.0, 6.0},
-		{6.0, 3.0, 5.0, 7.0},
+	static const t_color_palette	color_paletts[] = {
+	{12.0, 0.0, 2.0, 4.0},
+	{10.0, 1.0, 3.0, 5.0},
+	{8.0, 2.0, 4.0, 6.0},
+	{6.0, 3.0, 5.0, 7.0},
 	};
+
 	return (color_paletts[*get_current_index()]);
 }
 
 static int	float_to_color_component(double value)
 {
-	return (int)((sin(value) + 1.0) * 127.5);
+	return ((int)((sin(value) + 1.0) * 127.5));
 }
 
 int	get_color(int iter, int max_iter)
