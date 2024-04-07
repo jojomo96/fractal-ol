@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:46:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/05 15:47:09 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:23:03 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,11 @@ void	*render_section(void *arg)
 						+ thread_data->data.y_offset - WIN_HEIGHT / 2.0) * scale
 					+ thread_data->data.center.im);
 			color = thread_data->data.fractal(c, thread_data->data.max_iter);
-            if(p.y == thread_data->end_y - 1 && p.x == WIN_WIDTH - 1)
-                printf("color: %u\n", color);
 			mlx_put_pixel(thread_data->data.img, p.x, p.y, color);
 			p.x++;
 		}
 		p.y++;
 	}
-    printf("scale: %f\n", scale);
 	return (NULL);
 }
 

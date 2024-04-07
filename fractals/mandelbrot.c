@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:21:48 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/06 12:57:35 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:25:26 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,6 @@ static int	is_in_main_cardioid_or_bulb(t_complex c)
 	q = (c.re - 0.25) * (c.re - 0.25) + c.im * c.im;
 	return ((q * (q + (c.re - 0.25)) < 0.25 * c.im * c.im) || ((c.re + 1)
 			* (c.re + 1) + c.im * c.im < 1.0 / 16));
-}
-
-static int	float_to_color_component(double value)
-{
-	return (int)((sin(value) + 1.0) * 127.5);
-}
-
-int	get_color(int iter, int max_iter)
-{
-	double	t;
-	t_rgb	color;
-
-	if (iter == max_iter)
-		return (0x000000FF);
-	t = (double)iter / max_iter;
-	color.r = float_to_color_component(t * 12.0 + 0.0);
-	color.g = float_to_color_component(t * 12.0 + 2.0);
-	color.b = float_to_color_component(t * 12.0 + 4.0);
-	return (encode_rgb_as_int(color));
 }
 
 int	calc_mandelbrot(t_complex c, int max_iter)

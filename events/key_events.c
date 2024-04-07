@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:08:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/05 14:43:10 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:23:50 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,9 @@ void	key_press(void *param)
 		move_left_right = OFFSET_PER_CLICK;
 	if (move_up_down != 0 || move_left_right != 0)
 		move_window(data, move_left_right, move_up_down);
+	if (is_key(data->mlx, MLX_KEY_Q))
+	{
+		switch_color_palette();
+		put_image(*data);
+	}
 }

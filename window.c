@@ -35,6 +35,4 @@ void	put_image(t_data data)
 		}
 		p.y++;
 	}
-	printf("inter: %f\n", data.zoom);
-	// mlx_image_to_window(data.mlx, data.img, 0, 0);
 }

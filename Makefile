@@ -1,7 +1,7 @@
 NAME = fractol
 CC = cc
 # Initial SRC list without window.c to avoid duplication in the conditional assignment below
-SRC = main.c events/key_events.c events/mouse_events.c events/scroll_events.c complex.c fractals/burning_ship.c fractals/julia.c fractals/mandelbrot.c utils.c
+SRC = main.c colors.c events/key_events.c events/mouse_events.c events/scroll_events.c complex.c fractals/burning_ship.c fractals/julia.c fractals/mandelbrot.c utils.c
 OBJDIR = obj
 # Placeholder for OBJ, will be defined based on SRC
 OBJ =

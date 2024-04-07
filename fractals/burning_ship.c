@@ -6,29 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:29:04 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/06 12:47:02 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:30:30 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
-
-int	calc_burning_ship(t_complex c, int max_iter)
-{
-	int			iter;
-	t_complex	z;
-	t_complex	temp;
-
-	iter = 0;
-	z = init_complex(0, 0);
-	while (iter < max_iter && complex_abs(z) <= 2.0)
-	{
-		z = init_complex(fabs(z.re), fabs(z.im));
-		temp = complex_mul(z, z);
-		z = complex_add(temp, c);
-		iter++;
-	}
-	return (iter);
-}
 
 int	get_color_burning_ship(int iter, int max_iter)
 {

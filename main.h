@@ -28,6 +28,7 @@
 # define ZOOM_PER_CLICK 1.1
 
 # define MAX_ITER 5000
+# define MIN_ITER 30
 
 typedef u_int32_t	(*fractal_func)(t_complex, int);
 
@@ -66,6 +67,14 @@ typedef struct s_rgb
 	uint8_t			b;
 }					t_rgb;
 
+typedef struct s_color_palette
+{
+	double			frequency;
+	double			phase_r;
+	double			phase_g;
+	double			phase_b;
+}					t_color_palette;
+
 void				key_press(void *param);
 void				scroll_event(double xdelta, double ydelta, void *param);
 void				mouse_move_event(double x, double y, void *param);
@@ -80,5 +89,6 @@ int					calculate_max_iter(double zoom_level);
 void				put_image(t_data data);
 int					encode_rgb_as_int(t_rgb color);
 int					get_color(int iter, int max_iter);
+void				switch_color_palette(void);
 
 #endif
