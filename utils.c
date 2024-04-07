@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:48:29 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:48:38 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 09:59:39 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ t_complex	init_complex(double re, double im)
 	c.re = re;
 	c.im = im;
 	return (c);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		++s1;
+		++s2;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
 int	calculate_max_iter(double zoom_level)

@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:44:58 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 10:51:10 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 # define MAIN_H
 
 # include "complex.h"
+# include "libftprintf/ft_printf.h"
 # include <MLX42.h>
 # include <pthread.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <errno.h>
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -89,5 +91,6 @@ void				put_image(t_data data);
 int					encode_rgb_as_int(t_rgb color);
 int					get_color(int iter, int max_iter);
 void				switch_color_palette(void);
+int					ft_strcmp(const char *s1, const char *s2);
 
 #endif
