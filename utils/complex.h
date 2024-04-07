@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_color_events.c                                 :+:      :+:    :+:   */
+/*   complex.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/07 16:33:16 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 17:48:10 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/04/05 12:12:27 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/07 17:25:35 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main.h"
+#ifndef COMPLEX_H
+# define COMPLEX_H
 
-void	key_color_hook(mlx_key_data_t keydata, void *param)
+typedef struct s_complex
 {
-	t_data	*data;
+	double	re;
+	double	im;
+}			t_complex;
 
-	data = (t_data *)param;
-	if (keydata.key == MLX_KEY_1 && keydata.action == MLX_PRESS)
-	{
-		switch_color_palette();
-		put_image(*data);
-	}
-	if (keydata.key == MLX_KEY_KP_0 && keydata.action == MLX_PRESS)
-		toggle_flag(SHIFT_COLOR);
-}
+t_complex	complex_add(t_complex a, t_complex b);
+t_complex	complex_sub(t_complex a, t_complex b);
+t_complex	complex_mul(t_complex a, t_complex b);
+double		complex_abs(t_complex z);
+double		complex_magnitude(t_complex z);
+
+#endif

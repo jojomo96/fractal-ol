@@ -5,7 +5,7 @@ REPO_URL = https://github.com/codam-coding-college/MLX42.git
 LIBFT_PRINTF_DIR = libftprintf
 LIBFT_DIR = libft
 OBJDIR = obj
-HEADERS = main.h
+
 
 # Compiler and linker flags
 CFLAGS = -Wall -Wextra -Werror -I$(REPO_DIR)/include/MLX42 -Ofast -I$(LIBFT_DIR) -I$(LIBFT_PRINTF_DIR)
@@ -13,7 +13,24 @@ LDFLAGS =
 LIBS =
 
 # Source and object files
-SRC = main.c colors/colors_rgb.c overlay/overlay.c events/key_events.c events/key_color_events.c events/mouse_events.c events/scroll_events.c complex.c fractals/burning_ship.c fractals/julia.c fractals/mandelbrot.c utils.c
+SRC = main.c \
+	colors/colors_rgb.c \
+	overlay/overlay.c \
+	events/key_events.c \
+	events/key_color_events.c \
+	events/mouse_events.c\
+	events/scroll_events.c \
+	utils/complex.c \
+	utils/flags.c \
+	utils/utils.c \
+	fractals/burning_ship.c \
+	fractals/julia.c \
+	fractals/mandelbrot.c
+
+HEADERS = main.h \
+	utils/flags.h \
+	utils/complex.h
+
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
 # Platform-specific settings

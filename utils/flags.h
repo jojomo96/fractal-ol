@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex.h                                          :+:      :+:    :+:   */
+/*   flags.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 12:12:27 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/05 12:13:10 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/04/07 17:28:09 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/07 17:47:34 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMPLEX_H
-# define COMPLEX_H
+#ifndef FLAGS_H
+# define FLAGS_H
 
-# include <math.h>
-
-typedef struct s_complex
+typedef enum e_flags_bool
 {
-	double	re;
-	double	im;
-}			t_complex;
+	SHIFT_COLOR,
+	NUM_FLAGS
+}		t_flags;
 
-t_complex	complex_add(t_complex a, t_complex b);
-t_complex	complex_sub(t_complex a, t_complex b);
-t_complex	complex_mul(t_complex a, t_complex b);
-double		complex_abs(t_complex z);
-double		complex_magnitude(t_complex z);
+int		get_flag(t_flags flag);
+void	set_flag(t_flags flag, int state);
+void	toggle_flag(t_flags flag);
 
 #endif

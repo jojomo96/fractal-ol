@@ -6,11 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:48:29 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 09:59:39 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 17:25:30 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main.h"
 
 t_complex	init_complex(double re, double im)
 {

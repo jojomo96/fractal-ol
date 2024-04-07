@@ -6,11 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:15:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/04 15:18:39 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 17:27:44 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "complex.h"
+#include "../main.h"
 
 // Adds two complex numbers
 t_complex	complex_add(t_complex a, t_complex b)

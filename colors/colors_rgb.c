@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:06:34 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 17:19:31 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 17:45:32 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	switch_color_palette(void)
 {
 	static int	counter = 0;
 
+	if (get_flag(SHIFT_COLOR) == 0)
+	{
+		get_current_color_palette(1, 0.1);
+		return ;
+	}
 	counter++;
 	if (counter < 30)
 		get_current_color_palette(1, -0.3);
