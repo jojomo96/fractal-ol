@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 11:27:46 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 12:16:32 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 12:28:29 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	create_overlay(t_data *data)
 	mlx_put_string(data->mlx, "Mousewheel - Zoom", 10, 50);
 	mlx_put_string(data->mlx, "ESC - Exit", 10, 70);
 	mlx_put_string(data->mlx,
-		" Iter: | Shift: | Phase: | Ampl R | Ampl G | Ampl B |", 10, 130);
+		" Iter: | Reverse: | Phase: | Ampl R | Ampl G | Ampl B |", 10, 130);
 }
 
 void	update_overlay(t_data *data)
@@ -30,7 +30,7 @@ void	update_overlay(t_data *data)
 	int					size;
 
 	width[0] = 7;
-	width[1] = 8;
+	width[1] = 10;
 	width[2] = 8;
 	width[3] = 8;
 	width[4] = 8;

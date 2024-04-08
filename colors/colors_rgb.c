@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:06:34 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 11:31:25 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 13:31:06 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static t_color_palette	*get_current_color_palette(int update, double shift)
 		current_palette.phase_r = fmod(current_palette.phase_r, 2 * M_PI);
 		current_palette.phase_g = fmod(current_palette.phase_g, 2 * M_PI);
 		current_palette.phase_b = fmod(current_palette.phase_b, 2 * M_PI);
+		printf("Phase Shift: %f, R: %f, G: %f, B: %f\n",
+			phase_shift, current_palette.phase_r,
+			current_palette.phase_g, current_palette.phase_b);
 	}
 	return (&current_palette);
 }
@@ -67,11 +70,11 @@ int	get_color_rgb(int iter, int max_iter)
 		return (0x000000FF);
 	palette = get_current_color_palette(0, 0);
 	t = (double)iter / max_iter;
-	color.r = float_to_color_component((t * palette->frequency
+	color.r = float_to_color_component((t * get_config_value(FREQUENCY)
 				+ palette->phase_r) * get_config_value(AMPLITUDE_R));
-	color.g = float_to_color_component((t * palette->frequency
+	color.g = float_to_color_component((t * get_config_value(FREQUENCY)
 				+ palette->phase_g) * get_config_value(AMPLITUDE_G));
-	color.b = float_to_color_component((t * palette->frequency
+	color.b = float_to_color_component((t * get_config_value(FREQUENCY)
 				+ palette->phase_b) * get_config_value(AMPLITUDE_B));
 	return (encode_rgb_as_int(color));
 }
