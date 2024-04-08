@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:48:29 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 19:55:17 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 21:30:32 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	print_help(char **argv)
 	ft_printf("  -j,   Generate Julia fractal.\n");
 	ft_printf("  -m,   Generate Mandelbrot fractal.\n");
 	ft_printf("  -b,   Generate Burning Ship fractal.\n");
+	ft_printf("  -n,   Generate Newton fractal.\n");
 	ft_printf("\n");
 	ft_printf("  -o,   Apply an overlay on the generated fractal.\n");
 	ft_printf("  -p,   Set the position for Julia fractal generation.\n");
