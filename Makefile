@@ -48,7 +48,7 @@ OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 # Platform-Specific Settings
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-    LIBS += -L$(REPO_DIR)/lib -lmlx42 -lm -ldl -lX11 -lXext -lbsd
+    LIBS += -L$(REPO_DIR)/lib libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 endif
 ifeq ($(UNAME_S),Darwin)
     LIBS += -L$(REPO_DIR)/lib -framework Cocoa -framework OpenGL -framework IOKit MLX42/build/libmlx42.a -lglfw
