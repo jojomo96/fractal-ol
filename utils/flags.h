@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:28:09 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 15:22:11 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:03:20 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum e_flags_bool
 	JULIA_IS_ACTIVE,
 	MANDELBROT_IS_ACTIVE,
 	BURNING_SHIP_IS_ACTIVE,
+	NEWTON_FRACTAL_IS_ACTIVE,
 	NUM_FLAGS
 }		t_flags;
 

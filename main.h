@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 18:26:38 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:02:07 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void				key_color_hook(mlx_key_data_t keydata, void *param);
 u_int32_t			mandelbrot(t_complex c, int max_iter);
 u_int32_t			julia(t_complex z, int max_iter);
 u_int32_t			burning_ship(t_complex c, int max_iter);
+u_int32_t			newton_fractal(t_complex z, int max_iter);
 
 t_complex			init_complex(double re, double im);
 void				init_window_data(t_data *data);

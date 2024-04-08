@@ -27,11 +27,13 @@ SRC = main.c \
       events/mouse_events.c \
       events/scroll_events.c \
       utils/complex.c \
+      utils/complex_2.c \
       utils/flags.c \
       utils/utils.c \
       fractals/burning_ship.c \
       fractals/julia.c \
       fractals/mandelbrot.c \
+      fractals/newton_fractal.c \
       utils/config.c
 
 # Header Files

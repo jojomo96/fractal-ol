@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 18:18:33 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:03:49 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void	set_fractal(t_data *data, t_flags flag, int *has_flag)
 	else if (flag == BURNING_SHIP_IS_ACTIVE && !*has_flag)
 	{
 		data->fractal = &burning_ship;
+		*has_flag = 1;
+	}
+	else if (flag == NEWTON_FRACTAL_IS_ACTIVE && !*has_flag)
+	{
+		data->fractal = &newton_fractal;
 		*has_flag = 1;
 	}
 }
@@ -83,6 +88,10 @@ void	parse_args(int argc, char **argv, t_data *data)
 			set_fractal(data, MANDELBROT_IS_ACTIVE, &has_fractal);
 		else if (ft_strcmp(argv[i], "-b") == 0 && !has_fractal)
 			set_fractal(data, BURNING_SHIP_IS_ACTIVE, &has_fractal);
+		else if (ft_strcmp(argv[i], "-n") == 0)
+			set_fractal(data, NEWTON_FRACTAL_IS_ACTIVE, &has_fractal);
+		else if (ft_strcmp(argv[i], "-h") == 0)
+			print_help(argv);
 		else if (ft_strcmp(argv[i], "-p") == 0)
 		{
 			handle_p(argc, argv, &i);
