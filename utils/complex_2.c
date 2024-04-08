@@ -6,12 +6,19 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 18:55:49 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 19:48:33 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 21:32:35 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
+/**
+ * Divides two complex numbers.
+ *
+ * @param a The dividend complex number.
+ * @param b The divisor complex number.
+ * @return The result of the division as a complex number.
+ */
 t_complex	complex_div(t_complex a, t_complex b)
 {
 	double		divisor;
@@ -23,6 +30,12 @@ t_complex	complex_div(t_complex a, t_complex b)
 	return (result);
 }
 
+/**
+ * Evaluates a polynomial function f(z) = z^3 - 1.
+ *
+ * @param z The input complex number.
+ * @return The result of the polynomial function as a complex number.
+ */
 t_complex	polynomial_f(t_complex z)
 {
 	t_complex	z_cubed;
@@ -33,6 +46,12 @@ t_complex	polynomial_f(t_complex z)
 	return (complex_sub(z_cubed, one));
 }
 
+/**
+ * Evaluates the derivative of the polynomial function f'(z) = 3z^2.
+ *
+ * @param z The input complex number.
+ * @return The result of the derivative as a complex number.
+ */
 t_complex	polynomial_fp(t_complex z)
 {
 	t_complex	z_squared;
@@ -41,6 +60,13 @@ t_complex	polynomial_fp(t_complex z)
 	return (init_complex(3 * z_squared.re, 3 * z_squared.im));
 }
 
+/**
+ * Initializes a complex number with the given real and imaginary parts.
+ *
+ * @param re The real part of the complex number.
+ * @param im The imaginary part of the complex number.
+ * @return The initialized complex number.
+ */
 t_complex	init_complex(double re, double im)
 {
 	t_complex	c;
