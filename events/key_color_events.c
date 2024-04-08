@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:33:16 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 12:11:07 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 12:17:19 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ void	handle_color_palette_switch(mlx_key_data_t keydata, t_data *data)
 	}
 }
 
-void	toggle_color_shift(mlx_key_data_t keydata)
-{
-	if (keydata.key == MLX_KEY_KP_0 && keydata.action == MLX_PRESS)
-		toggle_flag(SHIFT_COLOR);
-}
-
 void	render_updated_image(mlx_key_data_t keydata, t_data *data)
 {
 	if (keydata.action == MLX_PRESS && keydata.key != MLX_KEY_ESCAPE)
@@ -67,7 +61,8 @@ void	key_color_hook(mlx_key_data_t keydata, void *param)
 
 	data = (t_data *)param;
 	handle_color_palette_switch(keydata, data);
-	toggle_color_shift(keydata);
+	if (keydata.key == MLX_KEY_KP_0 && keydata.action == MLX_PRESS)
+		toggle_flag(SHIFT_COLOR);
 	handle_phase_shift_and_amplitude_changes(keydata, data);
 	render_updated_image(keydata, data);
 }
