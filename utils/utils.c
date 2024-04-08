@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:48:29 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 17:25:30 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 14:55:38 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	calculate_max_iter(double zoom_level)
 		iter = MIN_ITER;
 	else if (iter > MAX_ITER)
 		iter = MAX_ITER;
-	return ((int)iter);
+	return ((int)iter + (int) get_config_value(ITER_OFFSET));
 }
 
 int	encode_rgb_as_int(t_rgb color)

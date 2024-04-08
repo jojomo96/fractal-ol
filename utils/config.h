@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 18:11:31 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 13:38:59 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 14:55:14 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef enum e_config
 	FREQUENCY,
 	JULIA_C_REAL,
 	JULIA_C_IMAGINARY,
+	ITER_OFFSET,
 	NUM_DOUBLES
 }		t_config_index;
 

@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:33:16 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 13:33:10 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:00:52 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	handle_phase_shift_and_amplitude_changes(mlx_key_data_t keydata,
 		adjust_value(keydata, AMPLITUDE_B, 0.1);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_KP_2))
 		adjust_value(keydata, FREQUENCY, 0.1);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_KP_7))
+		adjust_value(keydata, ITER_OFFSET, 1);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_KP_8))
+		adjust_value(keydata, ITER_OFFSET, 10);
 }
 
 void	handle_color_palette_switch(mlx_key_data_t keydata, t_data *data)
@@ -51,9 +55,9 @@ void	render_updated_image(mlx_key_data_t keydata, t_data *data)
 		update_overlay(data);
 		put_image(*data);
 		printf("Render Image\n");
-		printf("TEST: %f, R: %f, G: %f, B: %f\n",
-			get_config_value(PHASE_SHIFT), get_config_value(AMPLITUDE_R),
-			get_config_value(AMPLITUDE_G), get_config_value(AMPLITUDE_B));
+		printf("TEST: %f, R: %f, G: %f, B: %f\n", get_config_value(PHASE_SHIFT),
+			get_config_value(AMPLITUDE_R), get_config_value(AMPLITUDE_G),
+			get_config_value(AMPLITUDE_B));
 	}
 }
 
