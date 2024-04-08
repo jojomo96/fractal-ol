@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:46:11 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 15:14:35 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:18:39 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_window_data(t_data *data)
 	data->zoom = 2.0;
 	data->scale = data->zoom / WIN_WIDTH;
 	data->center = init_complex(-0.75, 0);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
 
 void	*render_section(void *arg)

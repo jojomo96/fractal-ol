@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 14:18:27 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:42:00 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,9 @@ void				put_image(t_data data);
 int					encode_rgb_as_int(t_rgb color);
 int					get_color_rgb(int iter, int max_iter);
 void				switch_color_palette(void);
-int					ft_strcmp(const char *s1, const char *s2);
 void				move_window(t_data *data, int x_offset, int y_offset);
+void				print_help(char **argv);
+void				init_config(void);
 
 // overlay
 void				update_overlay(t_data *data);

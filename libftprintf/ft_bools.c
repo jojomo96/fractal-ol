@@ -6,16 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:13:26 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/09 17:23:22 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 16:38:36 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_isdigit(int c)
-{
-	return ('0' <= c && c <= '9');
-}
 
 int	ft_is_digit_without_zero(int c)
 {

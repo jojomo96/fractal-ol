@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags.h                                            :+:      :+:    :+:   */
+/*   ft_is_str_digit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/07 17:28:09 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 15:22:11 by jmoritz          ###   ########.fr       */
+/*   Created: 2024/04/08 17:02:13 by jmoritz           #+#    #+#             */
+/*   Updated: 2024/04/08 17:03:26 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLAGS_H
-# define FLAGS_H
+#include "libft.h"
 
-typedef enum e_flags_bool
+/**
+ * Checks if the given string is a digit.
+ *
+ * @param str The string to be checked.
+ * @return 1 if the string is a digit, 0 otherwise.
+ */
+int	ft_is_str_digit(const char *str)
 {
-	SHIFT_COLOR,
-	IS_DRAGGING,
-	OVERLAY_IS_VISIBLE,
-	JULIA_IS_ACTIVE,
-	MANDELBROT_IS_ACTIVE,
-	BURNING_SHIP_IS_ACTIVE,
-	NUM_FLAGS
-}		t_flags;
-
-int		get_flag(t_flags flag);
-void	set_flag(t_flags flag, int state);
-void	toggle_flag(t_flags flag);
-
-#endif
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}

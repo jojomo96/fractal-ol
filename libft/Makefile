@@ -44,7 +44,11 @@ SRCS := ft_atoi.c \
 		ft_striteri.c \
 		ft_dtoa.c \
 		ft_strcspn.c \
-		ft_combine_numbers_fixed_width.c
+		ft_combine_numbers_fixed_width.c \
+		ft_strtod.c \
+		ft_isspace.c \
+		ft_strcmp.c \
+		ft_is_str_digit.c
 
 # Bonus source files
 BONUS_SRCS := ft_lstadd_back_bonus.c \

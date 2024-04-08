@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:20:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 10:29:56 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 17:04:41 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <errno.h>
 # include <limits.h>
+# include <math.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -80,5 +81,9 @@ char				*ft_dtoa(double n, int afterpoint);
 size_t				ft_strcspn(const char *s, const char *reject);
 char				*ft_combine_numbers_with_widths(double *numbers, int size,
 						int *widths);
+double				ft_strtod(const char *str, char **endptr);
+int					ft_isspace(int c);
+int					ft_strcmp(const char *s1, const char *s2);
+int					ft_is_str_digit(const char *str);
 
 #endif
