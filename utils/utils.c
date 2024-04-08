@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:48:29 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 17:51:31 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:24:22 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	print_help(char **argv)
 	ft_printf("        Requires two double values. The values must be\n");
 	ft_printf("        between -2.0 and 2.0. Example: -p 0.285 0.01\n");
 	ft_printf("\nUsage Examples:\n");
-	ft_printf("  %s -j -o              Generate a Julia fractal with",
-		argv[0]);
+	ft_printf("  %s -j -o              Generate a Julia fractal with", argv[0]);
 	ft_printf(" an overlay.\n");
 	ft_printf("  %s -m                 Generate a Mandelbrot fractal.\n",
 		argv[0]);
@@ -70,6 +69,8 @@ int	calculate_max_iter(double zoom_level)
 		iter = MIN_ITER;
 	else if (iter > MAX_ITER)
 		iter = MAX_ITER;
+	if ((int)get_config_value(ITER_OFFSET) + (int)iter <= 0)
+		return ((int)iter);
 	return ((int)iter + (int)get_config_value(ITER_OFFSET));
 }
 
