@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc_newton_fractal.c                              :+:      :+:    :+:   */
+/*   newton_fractal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 18:58:34 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 19:01:59 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:54:59 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int	calc_newton_fractal(t_complex c, int max_iter)
 
 u_int32_t	newton_fractal(t_complex z, int max_iter)
 {
-	return ((u_int32_t)get_color_rgb(calc_newton_fractal(z, max_iter), max_iter));
+	return ((u_int32_t)get_color_rgb(calc_newton_fractal(z, max_iter),
+			max_iter));
 }

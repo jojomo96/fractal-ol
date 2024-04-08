@@ -6,20 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:48:29 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 19:24:22 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:55:17 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
-
-t_complex	init_complex(double re, double im)
-{
-	t_complex	c;
-
-	c.re = re;
-	c.im = im;
-	return (c);
-}
 
 void	print_help(char **argv)
 {

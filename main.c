@@ -6,17 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 19:03:49 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 19:57:20 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-static void	ft_error(void)
-{
-	ft_printf("%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
 
 static void	set_fractal(t_data *data, t_flags flag, int *has_flag)
 {
@@ -49,22 +43,41 @@ static void	handle_p(int argc, char **argv, int *i)
 	char	*endptr1;
 	char	*endptr2;
 
-	if (*i + 2 < argc)
-	{
-		real = ft_strtod(argv[*i + 1], &endptr1);
-		imaginary = ft_strtod(argv[*i + 2], &endptr2);
-		while (ft_isspace((unsigned char)*endptr1))
-			endptr1++;
-		while (ft_isspace((unsigned char)*endptr2))
-			endptr2++;
-		if (*endptr1 != '\0' || *endptr2 != '\0')
-			print_help(argv);
-		if (real < -2.0 || real > 2.0 || imaginary < -2.0 || imaginary > 2.0)
-			print_help(argv);
-		set_config_value(JULIA_C_REAL, real);
-		set_config_value(JULIA_C_IMAGINARY, imaginary);
-		*i += 2;
-	}
+	if (*i + 2 >= argc)
+		return ((void)print_help(argv));
+	real = ft_strtod(argv[*i + 1], &endptr1);
+	imaginary = ft_strtod(argv[*i + 2], &endptr2);
+	while (ft_isspace((unsigned char)*endptr1))
+		endptr1++;
+	while (ft_isspace((unsigned char)*endptr2))
+		endptr2++;
+	if (*endptr1 != '\0' || *endptr2 != '\0' || real < -2.0 || real > 2.0
+		|| imaginary < -2.0 || imaginary > 2.0)
+		return ((void)print_help(argv));
+	set_config_value(JULIA_C_REAL, real);
+	set_config_value(JULIA_C_IMAGINARY, imaginary);
+	*i += 2;
+}
+
+void	handle_argument(t_data *data, int argc, char **argv, int *i)
+{
+	int	has_fractal;
+
+	has_fractal = 0;
+	if (ft_strcmp(argv[*i], "-o") == 0)
+		set_flag(OVERLAY_IS_VISIBLE, 1);
+	else if (ft_strcmp(argv[*i], "-j") == 0 && !has_fractal)
+		set_fractal(data, JULIA_IS_ACTIVE, &has_fractal);
+	else if (ft_strcmp(argv[*i], "-m") == 0 && !has_fractal)
+		set_fractal(data, MANDELBROT_IS_ACTIVE, &has_fractal);
+	else if (ft_strcmp(argv[*i], "-b") == 0 && !has_fractal)
+		set_fractal(data, BURNING_SHIP_IS_ACTIVE, &has_fractal);
+	else if (ft_strcmp(argv[*i], "-n") == 0)
+		set_fractal(data, NEWTON_FRACTAL_IS_ACTIVE, &has_fractal);
+	else if (ft_strcmp(argv[*i], "-h") == 0)
+		print_help(argv);
+	else if (ft_strcmp(argv[*i], "-p") == 0)
+		handle_p(argc, argv, i);
 	else
 		print_help(argv);
 }
@@ -72,32 +85,13 @@ static void	handle_p(int argc, char **argv, int *i)
 void	parse_args(int argc, char **argv, t_data *data)
 {
 	int	i;
-	int	has_fractal;
 
 	if (argc < 2)
 		print_help(argv);
-	has_fractal = 0;
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_strcmp(argv[i], "-o") == 0)
-			set_flag(OVERLAY_IS_VISIBLE, 1);
-		else if (ft_strcmp(argv[i], "-j") == 0 && !has_fractal)
-			set_fractal(data, JULIA_IS_ACTIVE, &has_fractal);
-		else if (ft_strcmp(argv[i], "-m") == 0 && !has_fractal)
-			set_fractal(data, MANDELBROT_IS_ACTIVE, &has_fractal);
-		else if (ft_strcmp(argv[i], "-b") == 0 && !has_fractal)
-			set_fractal(data, BURNING_SHIP_IS_ACTIVE, &has_fractal);
-		else if (ft_strcmp(argv[i], "-n") == 0)
-			set_fractal(data, NEWTON_FRACTAL_IS_ACTIVE, &has_fractal);
-		else if (ft_strcmp(argv[i], "-h") == 0)
-			print_help(argv);
-		else if (ft_strcmp(argv[i], "-p") == 0)
-		{
-			handle_p(argc, argv, &i);
-		}
-		else
-			print_help(argv);
+		handle_argument(data, argc, argv, &i);
 		i++;
 	}
 }
@@ -112,7 +106,10 @@ int	main(int argc, char **argv)
 	if (!data.mlx)
 		return (1);
 	if (!data.img)
-		ft_error();
+	{
+		mlx_terminate(data.mlx);
+		return (1);
+	}
 	if (get_flag(OVERLAY_IS_VISIBLE))
 		create_overlay(&data);
 	put_image(data);

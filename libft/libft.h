@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:20:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 18:20:46 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 21:05:06 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <errno.h>
 # include <limits.h>
 # include <math.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
 
