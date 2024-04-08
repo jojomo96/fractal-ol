@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:06:34 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 10:46:48 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 11:31:25 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,19 @@ static t_color_palette	*get_current_color_palette(int update, double shift)
 	}
 	if (update)
 	{
-		current_palette.phase_r += phase_shift * 0.5;
-		current_palette.phase_g += phase_shift * 1.5;
-		current_palette.phase_b += phase_shift * 5;
+		current_palette.phase_r += phase_shift;
+		current_palette.phase_g += phase_shift;
+		current_palette.phase_b += phase_shift;
 		current_palette.phase_r = fmod(current_palette.phase_r, 2 * M_PI);
 		current_palette.phase_g = fmod(current_palette.phase_g, 2 * M_PI);
 		current_palette.phase_b = fmod(current_palette.phase_b, 2 * M_PI);
 	}
 	return (&current_palette);
+}
+
+void	update_color_palette(void)
+{
+	get_current_color_palette(1, 0);
 }
 
 void	switch_color_palette(void)
@@ -62,11 +67,11 @@ int	get_color_rgb(int iter, int max_iter)
 		return (0x000000FF);
 	palette = get_current_color_palette(0, 0);
 	t = (double)iter / max_iter;
-	color.r = float_to_color_component(t * palette->frequency
-			+ palette->phase_r);
-	color.g = float_to_color_component(t * palette->frequency
-			+ palette->phase_g);
-	color.b = float_to_color_component(t * palette->frequency
-			+ palette->phase_b);
+	color.r = float_to_color_component((t * palette->frequency
+				+ palette->phase_r) * get_config_value(AMPLITUDE_R));
+	color.g = float_to_color_component((t * palette->frequency
+				+ palette->phase_g) * get_config_value(AMPLITUDE_G));
+	color.b = float_to_color_component((t * palette->frequency
+				+ palette->phase_b) * get_config_value(AMPLITUDE_B));
 	return (encode_rgb_as_int(color));
 }

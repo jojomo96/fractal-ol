@@ -6,24 +6,24 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 20:39:55 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 11:04:06 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
 
-# include "utils/complex.h"
-# include "utils/flags.h"
-# include "utils/config.h"
 # include "libftprintf/ft_printf.h"
+# include "utils/complex.h"
+# include "utils/config.h"
+# include "utils/flags.h"
 # include <MLX42.h>
 # include <errno.h>
+# include <math.h>
 # include <pthread.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <math.h>
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -103,5 +103,6 @@ int					ft_strcmp(const char *s1, const char *s2);
 // overlay
 void				update_overlay(t_data *data);
 void				create_overlay(t_data *data);
+void				update_color_palette(void);
 
 #endif
