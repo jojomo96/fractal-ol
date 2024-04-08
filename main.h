@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 12:25:57 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 13:52:54 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define ZOOM_PER_CLICK 1.1
 
 # define MAX_ITER 5000
-# define MIN_ITER 40
+# define MIN_ITER 30
 
 # define THREAD_COUNT 12
 

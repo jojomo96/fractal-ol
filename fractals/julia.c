@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:19:03 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 16:45:39 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 13:40:16 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	calc_julia(t_complex z, int max_iter)
 	t_complex	z_temp;
 
 	iter = 0;
-	c = init_complex(-0.7, 0.27015);
+	c = init_complex(get_config_value(JULIA_C_REAL), get_config_value(JULIA_C_IMAGINARY));
 	while (iter < max_iter && complex_magnitude(z) <= 2.0)
 	{
 		z_temp = init_complex(z.re * z.re - z.im * z.im + c.re, 2.0 * z.re

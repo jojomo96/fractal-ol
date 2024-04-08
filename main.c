@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 12:17:31 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 13:39:38 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	main(int argc, char **argv)
 	set_config_value(AMPLITUDE_R, 1.0);
 	set_config_value(AMPLITUDE_G, 1.0);
 	set_config_value(AMPLITUDE_B, 1.0);
+	set_config_value(JULIA_C_REAL, -0.7);
+	set_config_value(JULIA_C_IMAGINARY, 0.27015);
 	parse_args(argc, argv, &data);
 	init_window_data(&data);
 	if (!data.mlx)
