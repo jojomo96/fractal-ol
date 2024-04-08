@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 17:41:06 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 18:03:20 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static void	handle_p(int argc, char **argv, int *i)
 		set_config_value(JULIA_C_REAL, real);
 		set_config_value(JULIA_C_IMAGINARY, imaginary);
 		*i += 2;
-		printf("Julia C: %f + %fi\n", get_config_value(JULIA_C_REAL),
-			get_config_value(JULIA_C_IMAGINARY));
 	}
 	else
 		print_help(argv);

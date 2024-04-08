@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 16:33:16 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 15:00:52 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 18:03:58 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ void	render_updated_image(mlx_key_data_t keydata, t_data *data)
 	{
 		update_overlay(data);
 		put_image(*data);
-		printf("Render Image\n");
-		printf("TEST: %f, R: %f, G: %f, B: %f\n", get_config_value(PHASE_SHIFT),
-			get_config_value(AMPLITUDE_R), get_config_value(AMPLITUDE_G),
-			get_config_value(AMPLITUDE_B));
 	}
 }
 
