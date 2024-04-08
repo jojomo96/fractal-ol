@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:59:41 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 14:42:24 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 21:06:55 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,8 @@ void	mouse_move_event(double x, double y, void *param)
 void	mouse_klick_event(mouse_key_t button, action_t action,
 		modifier_key_t mods, void *param)
 {
-	t_data	*data;
-
+	(void)param;
 	(void)mods;
-	data = (t_data *)param;
 	if (button == MLX_MOUSE_BUTTON_LEFT)
 	{
 		if (action == MLX_PRESS)
