@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 11:27:46 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/08 15:12:27 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 18:16:28 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void	create_overlay(t_data *data)
 {
+	char	*str;
+
 	mlx_put_string(data->mlx, "Controls:", 10, 10);
 	mlx_put_string(data->mlx, "WASD / Arrowkeys - Move", 10, 30);
 	mlx_put_string(data->mlx, "Mousewheel - Zoom", 10, 50);
 	mlx_put_string(data->mlx, "ESC - Exit", 10, 70);
 	mlx_put_string(data->mlx, "Q - Switch Color Palette", 10, 90);
 	mlx_put_string(data->mlx, "SHIFT + Mouse -> Change Julia values", 10, 110);
-	mlx_put_string(data->mlx,
-		" (7)(8) Iter: | (0) Reverse: | (1) Phase: | (4) Ampl R | (5) Ampl G | (6) Ampl B | (2) Frequenzy: |", 10, 130);
+	str = " (7)(8) Iter: | (0) Reverse: | (1) Phase:"
+		" | (4) Ampl R | (5) Ampl G | (6) Ampl B | (2) Frequenzy: |";
+	mlx_put_string(data->mlx, str, 10, 130);
 }
 
 void	update_overlay(t_data *data)
@@ -30,7 +33,7 @@ void	update_overlay(t_data *data)
 	double				numbers[7];
 	int					width[7];
 
-	if(!get_flag(OVERLAY_IS_VISIBLE))
+	if (!get_flag(OVERLAY_IS_VISIBLE))
 		return ;
 	width[0] = 14;
 	width[1] = 14;
@@ -48,5 +51,6 @@ void	update_overlay(t_data *data)
 	numbers[6] = get_config_value(FREQUENCY);
 	mlx_delete_image(data->mlx, overlays[0]);
 	overlays[0] = mlx_put_string(data->mlx,
-			ft_combine_numbers_with_widths(numbers, sizeof(numbers) / sizeof(numbers[0]), width), 10, 150);
+			ft_combine_numbers_with_widths(numbers, sizeof(numbers)
+				/ sizeof(numbers[0]), width), 10, 150);
 }
