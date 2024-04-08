@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:31:08 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/03/12 20:54:34 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 21:06:07 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	ft_handle_specifier(const char **format, va_list args, t_params params,
 		t_dca *str)
 {
-	int	is_wrong;
-
-	is_wrong = 0;
 	if (**format == 'c')
 		ft_handle_char(va_arg(args, int), params, str);
 	else if (**format == 's')
