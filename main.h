@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:44:57 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 17:31:08 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 20:39:55 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "utils/complex.h"
 # include "utils/flags.h"
+# include "utils/config.h"
 # include "libftprintf/ft_printf.h"
 # include <MLX42.h>
 # include <errno.h>

@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:20:22 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 15:08:24 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 10:29:56 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-void				ft_dtoa(double n, char *res, int afterpoint);
+char				*ft_dtoa(double n, int afterpoint);
 size_t				ft_strcspn(const char *s, const char *reject);
+char				*ft_combine_numbers_with_widths(double *numbers, int size,
+						int *widths);
 
 #endif

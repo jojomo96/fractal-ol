@@ -6,7 +6,7 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:20:24 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 17:44:28 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/07 18:23:15 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	set_flag(SHIFT_COLOR, 0);
+	set_config_value(FREQUENCY, 12.0);
+	set_config_value(PHASE_SHIFT, 0.6);
 
 	parse_args(argc, argv, &data);
 	init_window_data(&data);

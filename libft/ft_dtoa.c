@@ -6,10 +6,11 @@
 /*   By: jmoritz < jmoritz@student.42heilbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 13:11:58 by jmoritz           #+#    #+#             */
-/*   Updated: 2024/04/07 13:27:37 by jmoritz          ###   ########.fr       */
+/*   Updated: 2024/04/08 10:23:12 by jmoritz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <math.h>
 
 static void	reverse_string(char *str, int length)
@@ -47,16 +48,14 @@ static void	convert_num_to_str(int num, char *str, int *str_index)
 
 static void	ft_int_to_str(int num, char *str, int *str_index)
 {
-	int	i;
 	int	is_negative;
 
-	i = 0;
-	is_negative = 0;
 	if (num == 0)
 	{
 		str[(*str_index)++] = '0';
 		return ;
 	}
+	is_negative = 0;
 	if (num < 0)
 	{
 		is_negative = 1;
@@ -68,28 +67,37 @@ static void	ft_int_to_str(int num, char *str, int *str_index)
 	reverse_string(str, *str_index);
 }
 
-// Main function to convert double to string
-void	ft_dtoa(double n, char *res, int afterpoint)
+void	handle_minus(char *res, double *n, int *i)
 {
-	int	ipart;
-	int	fpart;
-	int	i;
-
-	if (n < 0)
+	if (*n < 0)
 	{
 		res[0] = '-';
-		n = -n;
+		*n = -(*n);
+		*i = 1;
 	}
+}
+
+char	*ft_dtoa(double n, int afterpoint)
+{
+	char	*res;
+	int		ipart;
+	double	fpart;
+	int		i;
+
+	res = malloc(1 + 20 + 1 + afterpoint + 1);
+	if (!res)
+		return (NULL);
 	ipart = (int)n;
 	fpart = n - (double)ipart;
 	i = 0;
-	if (res[0] == '-')
-		i = 1;
+	handle_minus(res, &n, &i);
 	ft_int_to_str(ipart, res + i, &i);
-	if (afterpoint != 0)
+	if (afterpoint > 0)
 	{
-		res[i] = '.';
-		fpart = fpart * pow(10.0, afterpoint);
-		ft_int_to_str((int)fpart, res + i + 1, &i);
+		res[i++] = '.';
+		fpart = fabs(fpart * pow(10.0, afterpoint));
+		ft_int_to_str((int)fpart, res + i, &i);
 	}
+	res[i] = '\0';
+	return (res);
 }

@@ -25,11 +25,13 @@ SRC = main.c \
 	utils/utils.c \
 	fractals/burning_ship.c \
 	fractals/julia.c \
-	fractals/mandelbrot.c
+	fractals/mandelbrot.c \
+	utils/config.c
 
 HEADERS = main.h \
 	utils/flags.h \
-	utils/complex.h
+	utils/complex.h \
+	utils/config.h
 
 OBJ = $(SRC:%.c=$(OBJDIR)/%.o)
 
